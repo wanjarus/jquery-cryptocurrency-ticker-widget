@@ -81,7 +81,7 @@ $('#ticker_1').cryptoticker({
 You can have multiple tickers that have different options
 ```html
 <div class="ticker" id="ticker_1"></div>
-<div class="ticker" id="ticker_2"
+<div class="ticker" id="ticker_2"></div>
 ```
 
 ```javascript

@@ -48,3 +48,57 @@ $(document).ready(function(){
 | **nameColor**       | '#2EABC9'     | Default coin name color |
 | **priceColor**       | '#ffffff'     | Default price color |
 | **capColor**       | '#ffffff'     | Default market cap color |
+
+### Examples
+**Be sure to add the ticker class to the div that you want to target or else it won't have any styles!**
+```html
+<div class="ticker" id="ticker_1"></div>
+```
+
+**Your Javascript File**
+```javascript
+//Default ticker with no options
+$('#ticker_1').cryptoticker();
+
+![](https://pkellz.github.io/pk/images/ticker/ticker1.png)
+
+//Ticker with options
+$('#ticker_1').cryptoticker({
+    startIndex:5,
+    getTopCoins:3,
+    nameColor:'yellow',
+    separatorColor:'#ddd',
+    separatorWidth:10,
+    priceColor:'orange'
+});
+```
+
+![](https://pkellz.github.io/pk/images/ticker/ticker2.png)
+
+You can have multiple tickers that have different options
+```html
+<div class="ticker" id="ticker_1"></div>
+<div class="ticker" id="ticker_2"
+```
+
+```javascript
+$('#ticker_1').cryptoticker({
+    startIndex:0,
+    getTopCoins:20,
+    nameColor:'yellow',
+    separatorColor:'#ddd',
+    separatorWidth:10,
+    priceColor:'orange'
+  });
+
+  $('#ticker_2').cryptoticker({
+    startIndex:19,
+    getTopCoins:20,
+    nameColor:'#44aaff',
+    separatorColor:'red',
+    separatorWidth:10,
+    priceColor:'orange'
+  });
+```
+
+![](https://pkellz.github.io/pk/images/ticker/ticker3.png)

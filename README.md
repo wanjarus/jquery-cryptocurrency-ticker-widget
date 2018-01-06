@@ -28,7 +28,7 @@ To initialize the widget just insert `$({selector}).cryptoticker();` in your `$(
 
 ```javascript
 $(document).ready(function(){
-    $('#tickerDiv').cryptoticker(options);
+    $('#tickerDiv').cryptoticker();
 });
 ```
 **You may pass a configuration object here:** `$('#tickerDiv').cryptoticker({options});`

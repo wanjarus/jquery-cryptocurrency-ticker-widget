@@ -12,7 +12,7 @@ Include the **latest version of jQuery** in your project:
 Include the **jquery.cryptoticker.js** file. Make sure you include it **after** jQuery:
 
 ```html
-<script src="//min.gitcdn.xyz/repo/wintercounter/Protip/master/protip.min.js"></script>
+<script src="jquery.cryptoticker.js"></script>
 ```
 
 Include the **cryptoticker.css** file in your `<head>` tag:
@@ -30,6 +30,8 @@ $(document).ready(function(){
 });
 ```
 **You may pass a configuration object here:** `$('#tickerDiv').cryptoticker({options});`
+
+## Options
 
 | Option       | Default  | Details   |
 |----------------|----------|-----------|

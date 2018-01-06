@@ -61,9 +61,10 @@ $(document).ready(function(){
 ```javascript
 //Default ticker with no options
 $('#ticker_1').cryptoticker();
-
+```
 ![](https://pkellz.github.io/pk/images/ticker/ticker1.png)
 
+```javascript
 //Ticker with options
 $('#ticker_1').cryptoticker({
     startIndex:5,

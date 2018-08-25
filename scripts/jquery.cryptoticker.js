@@ -6,7 +6,6 @@
 * prices, market caps, and % changes of cryptocurrencies from the CoinMarketCap API
 */
 
-//slide less / none at all if there is room in the window
 (function($)
 {
   $.fn.cryptoticker = function(options)

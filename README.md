@@ -4,7 +4,7 @@ Customizable jQuery widget that lets you retrieve live prices, market caps, and 
 ![](https://pkellz.github.io/pk/images/ticker/ticker1.png)
 
 # Installation
-Clone this repository or [download](https://pkellz.github.io/pk/ticker/jquery-cryptocurrency-ticker-widget.zip) the plugin files here.
+Clone this repository or [download](https://pkellz.github.io/pk/cryptoticker/jquery-cryptocurrency-ticker-widget.zip) the plugin files here.
 
 Include the **latest version of jQuery** in your project:
 ```html

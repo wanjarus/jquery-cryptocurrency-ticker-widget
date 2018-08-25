@@ -64,8 +64,9 @@ function fetchData(url,_this,settings)
 
 function renderData(data,_this,opts,url)
 {
-  if(_this.children("ul").length == 0)
-    _this.append("<ul>");
+  // Clear previous ul
+  _this.empty()
+  _this.append("<ul>");
 
   data.forEach((data, index)=>
   {
@@ -76,12 +77,14 @@ function renderData(data,_this,opts,url)
           symbol
         } = data
 
-    // pctChangeSign - was pct_24 positive or negative?
+    // pctChangeSign - is 24% change positive or negative
     const pctChangeSign = pct_24.split('')[0] == '-' ? 'pct_down' : 'pct_up'
     const arrow = pctChangeSign == 'pct_down' ? 'fa-caret-down' : 'fa-caret-up'
 
-    mktCap = addCommas(mktCap)
+    // Replace all spaces in coin name with dashes
     name = name.replace(/\s/g,"-")
+    // Add commas to market cap
+    mktCap = addCommas(mktCap)
 
     _this.children('ul').append(`
     <li>
@@ -102,40 +105,37 @@ function renderData(data,_this,opts,url)
     </div>
   </li>`);
 
-    //expand ul to accomodate the newest li width
+    // Expand ul to accomodate the newest li width
     let newestLiWidth = _this.find("li:last-child").css('width')
     _this.children("ul").css({'width':'+='+newestLiWidth});
   })
   beginSliding(_this,opts,url)
 }
 
+function beginSliding(_this,opts,url)
+{
+  let { speed, fadeInOutSpeed, resetSpeed } = opts;
+  let ul = _this.find("ul")
+  let ulWidth = _this.css('width')
+  ul.animate({'opacity':'1'},fadeInOutSpeed);
+
+  ul.animate({'margin-left':`-=${ulWidth}`},speed, ()=> {
+    ul.animate({'opacity':'0'},fadeInOutSpeed,()=> {
+      ul.animate({'margin-left':`0px`},fadeInOutSpeed,()=> {
+        fetchData(url,_this,opts);
+      })
+    });
+  })
+}
+
 function addCommas(mktCap)
 {
   mktCap = mktCap.split('.')[0].split('')
-  //add commas
+  // Add commas
   for(let i = mktCap.length-3; i > 0; i-=3)
   {
     mktCap.splice(i,0,',')
   }
   mktCap = mktCap.join('');
   return mktCap
-}
-function beginSliding(_this,opts,url)
-{
-  let ul = _this.find("ul")
-  let { speed, fadeInOutSpeed, resetSpeed } = opts;
-  ul.animate({'opacity':'1'},fadeInOutSpeed);
-
-  let ulWidth = _this.css('width')
-  ul.animate({'margin-left':`-=${ulWidth}`},speed, ()=>
-  {
-
-    ul.animate({'opacity':'0'},fadeInOutSpeed);
-    ul.empty();
-    ul.remove();
-    // ul.animate({'margin-left':'0px'},resetSpeed);
-    // ul.remove();
-    fetchData(url,_this,opts);
-    // beginSliding(_this,opts)
-  })
 }

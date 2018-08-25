@@ -10,7 +10,7 @@ body
 .ticker ul
 {
   margin:0;
-  width:50%;
+  opacity: 0;
   overflow: hidden;
 }
 .ticker

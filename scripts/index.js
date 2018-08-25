@@ -6,7 +6,7 @@ $(function()
     getTopCoins:20,
     nameColor:'yellow',
     separatorColor:'#ddd',
-    priceColor:'orange'
+    priceColor:'orange',
     speed:5000
   });
 })

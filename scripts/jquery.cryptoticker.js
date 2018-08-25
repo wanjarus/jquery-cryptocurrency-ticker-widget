@@ -20,7 +20,7 @@
       speed:10000,                // time until slide ends - default 30 seconds
       fadeInOutSpeed:2500,        // time it takes to fade out after slide animation ends - default 2.5 seconds,
       resetSpeed:1000,            // time it takes for the ticker to reset position after fading out - default 1 second
-      separatorColor: '#555',  // default separator color
+      separatorColor: '#555',     // default separator color
       separatorWidth:1,           // default separator width (px)
       nameColor:'#F9B016',        // default name color
       priceColor:'#ffffff',       // default price color
@@ -55,21 +55,11 @@ function fetchData(url,_this,settings)
   .then(res=>
   {
     if(res.status !== 200)
-    {
-      console.log("Invalid Coin or Bad Request");
       throw new err
-    }
-    else
-      return res.json()
+    return res.json()
   })
-  .then(data=>
-  {
-    renderData(data,_this,settings,url)
-  })
-  .catch(()=>
-  {
-    console.log('caught')
-  })
+  .then(data=>{ renderData(data,_this,settings,url) })
+  .catch(err=>{ console.log(err) })
 }
 
 function renderData(data,_this,opts,url)
@@ -85,21 +75,14 @@ function renderData(data,_this,opts,url)
           price_usd: price,
           symbol
         } = data
-    //variable to determine if the pct_24 was positive or negative
+
+    // pctChangeSign - was pct_24 positive or negative?
     const pctChangeSign = pct_24.split('')[0] == '-' ? 'pct_down' : 'pct_up'
     const arrow = pctChangeSign == 'pct_down' ? 'fa-caret-down' : 'fa-caret-up'
-    //make sure pct_24 has 2 decimal places
-    if (pct_24.split('.')[1].length != 2)
-      pct_24 = pct_24 + '0';
-    //get rid of trailing 0
-    mktCap = mktCap.split('.')[0].split('')
-    //add commas
-    for(let i = mktCap.length-3; i > 0; i-=3)
-    {
-      mktCap.splice(i,0,',')
-    }
-    mktCap = mktCap.join('');
+
+    mktCap = addCommas(mktCap)
     name = name.replace(/\s/g,"-")
+
     _this.children('ul').append(`
     <li>
       <div class="coin" style="border-right:${opts.separatorWidth}px solid ${opts.separatorColor}">
@@ -125,6 +108,18 @@ function renderData(data,_this,opts,url)
   })
   beginSliding(_this,opts,url)
 }
+
+function addCommas(mktCap)
+{
+  mktCap = mktCap.split('.')[0].split('')
+  //add commas
+  for(let i = mktCap.length-3; i > 0; i-=3)
+  {
+    mktCap.splice(i,0,',')
+  }
+  mktCap = mktCap.join('');
+  return mktCap
+}
 function beginSliding(_this,opts,url)
 {
   let ul = _this.find("ul")
@@ -138,7 +133,7 @@ function beginSliding(_this,opts,url)
     ul.animate({'opacity':'0'},fadeInOutSpeed);
     ul.empty();
     ul.remove();
-    ul.animate({'margin-left':'0px'},resetSpeed);
+    // ul.animate({'margin-left':'0px'},resetSpeed);
     // ul.remove();
     fetchData(url,_this,opts);
     // beginSliding(_this,opts)

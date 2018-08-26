@@ -1,7 +1,7 @@
 # jQuery Cryptocurrency Ticker Widget - [Demo](https://pkellz.github.io/pk/cryptoticker/)
 Customizable jQuery widget that lets you retrieve live prices, market caps, and % changes of cryptocurrencies from the CoinMarketCap API
 
-![](https://pkellz.github.io/pk/images/ticker/ticker1.png)
+![](./ticker1.png)
 
 # Installation
 Clone this repository or [download](https://pkellz.github.io/pk/cryptoticker/jquery-cryptocurrency-ticker-widget.zip) the plugin files here.
@@ -62,7 +62,7 @@ $(document).ready(function(){
 //Default ticker with no options
 $('#ticker_1').cryptoticker();
 ```
-![](https://pkellz.github.io/pk/images/ticker/ticker1.png)
+![](./demo/ticker1.gif)
 
 ```javascript
 //Ticker with options
@@ -76,7 +76,7 @@ $('#ticker_1').cryptoticker({
 });
 ```
 
-![](https://pkellz.github.io/pk/images/ticker/ticker2.png)
+![](./demo/ticker2.gif)
 
 You can have multiple tickers that have different options
 ```html
@@ -103,5 +103,3 @@ $('#ticker_1').cryptoticker({
     priceColor:'orange'
   });
 ```
-
-![](https://pkellz.github.io/pk/images/ticker/ticker3.png)
